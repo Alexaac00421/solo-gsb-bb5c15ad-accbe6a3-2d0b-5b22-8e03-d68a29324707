@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      APP_DB_PATH: /data/app.db
+    volumes:
+      - census-data:/data
+    restart: unless-stopped
+
+volumes:
+  census-data:
