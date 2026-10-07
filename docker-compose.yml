@@ -1,0 +1,17 @@
+services:
+  census-api:
+    build: .
+    image: census-district-api
+    container_name: census-district-api
+    ports:
+      - "8000:8000"
+    environment:
+      # SQLite 数据库文件位置（容器内持久化目录）
+      DB_PATH: /data/census.db
+    volumes:
+      # 命名卷：本地持久化存储，容器重建后数据不丢
+      - census-data:/data
+    restart: unless-stopped
+
+volumes:
+  census-data:
